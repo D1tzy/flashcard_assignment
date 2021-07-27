@@ -15,7 +15,7 @@ function RouteBuilder({ path, route, setRoute }) {
 export default function UserRouteHelper({ decks, deckId }) {
     const { path } = useRouteMatch();
     console.log(decks)
-    const name = decks[0][deckId].name
+    const name = decks[0][deckId - 1].name
 
 
     const [route, setRoute] = useState(["Home", "/", `${name}`])

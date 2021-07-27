@@ -6,6 +6,9 @@ import Main from "../main-page/Main"
 import Deck from "../deck-pages/Deck"
 import vars from "../common/variables.js"
 import StudyDeck from "../deck-pages/StudyDeck";
+import EditDeck from "../deck-pages/EditDeck"
+import EditCard from "../card-pages/EditCard"
+import AddCard from "../card-pages/AddCard"
 import { useRouteMatch, Route, Switch } from "react-router-dom"
 
 function Layout() {
@@ -39,19 +42,19 @@ function Layout() {
             <CreateDeck />
           </Route>
           <Route path="/decks/:deckId/cards/:cardId/edit">
-
+            <EditCard decks={decks} />
           </Route>
           <Route path="/decks/:deckId/cards/new">
-
+            <AddCard decks={decks} />
           </Route>
           <Route path="/decks/:deckId/edit">
-
+            <EditDeck decks={decks}/>
           </Route>
           <Route path="/decks/:deckId/study">
             <StudyDeck decks={decks}/>
           </Route>
           <Route path="/decks/:deckId">
-            <Deck />
+            <Deck decks={decks} />
           </Route>
           <Route>
             <NotFound />
