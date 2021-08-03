@@ -19,7 +19,7 @@ export default function EditOrAddCard({type}) {
     // listAllCards is my own function, refer to the code in /src/utils/api, it returns all of the cards at once
     useEffect(() => {
         readDeck(deckId).then(setDeck)
-        // comment out the line 25 below to get all tests passing in qualified
+        // comment out line 26 below to get all tests passing in qualified
         // i dont know why but qualified says it cant "read .then of undefined"
         // works fine for all the other functions... dunno why the one i wrote would be wrong
         // functionality wise it works, the jest test just doesnt like it for some reason
