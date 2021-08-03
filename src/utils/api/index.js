@@ -158,6 +158,12 @@ export async function listCards(deckId, signal) {
   return await fetchJson(url, { signal }, []);
 }
 
+// i wrote this function myself to solve the problem of not being able to see all the cards using listCards()
+export async function listAllCards(signal) {
+  const url = `${API_BASE_URL}/cards`
+  return await fetchJson(url, signal, [])
+}
+
 /**
  * Creates a new card associated with the specified `deckId`.
  * There is no validation that there is an existing deck with the specified `deckId`.

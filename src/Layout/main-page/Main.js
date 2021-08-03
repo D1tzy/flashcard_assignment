@@ -3,14 +3,14 @@ import React, { Fragment } from "react"
 import { Link } from "react-router-dom"
 
 
-
-export default function Main({decks, setDecks}) {
+// Main has a button linked to the CreateDeck page, and also renders DecksList
+export default function Main({decks}) {
     return (
       <Fragment>
         <Link to={`/decks/new`}>
           <button>Create Deck</button>
         </Link>
-        <DecksList decks={decks} setDecks={setDecks} />
+        <DecksList decks={decks} />
       </Fragment>
     )
 }

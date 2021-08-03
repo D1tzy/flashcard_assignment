@@ -4,12 +4,11 @@ import NotFound from "../NotFound";
 import CreateDeck from "../deck-pages/CreateDeck"
 import Main from "../main-page/Main"
 import Deck from "../deck-pages/Deck"
-import vars from "../common/variables.js"
 import StudyDeck from "../deck-pages/StudyDeck";
-import EditDeck from "../deck-pages/EditDeck"
-import EditCard from "../card-pages/EditCard"
-import AddCard from "../card-pages/AddCard"
+import EditDeck from "../deck-pages/EditDeck";
+import EditOrAddCard from "../card-pages/EditOrAddCard"
 import { useRouteMatch, Route, Switch } from "react-router-dom"
+import {listDecks} from "../../utils/api"
 
 function Layout() {
   const {url} = useRouteMatch()
@@ -17,18 +16,8 @@ function Layout() {
   const [decks, setDecks] = useState([])
   
   useEffect(() => {
-    console.log("use effect")
-    const {BASE_URL} = vars;
-    const url = `${BASE_URL}/decks?_embed=cards`
-    //const abortController = new AbortController()
-    fetch(url)
-      .then((response) => response.json())
-      .then((response) => {
-          console.log("Setting decks as", response)
-          setDecks([response], setDecks([response]))
-        })
-    //return abortController.abort();
-    }, [])
+      listDecks().then(setDecks)
+    }, []) 
   
   return (
     <Fragment>
@@ -42,13 +31,13 @@ function Layout() {
             <CreateDeck />
           </Route>
           <Route path="/decks/:deckId/cards/:cardId/edit">
-            <EditCard decks={decks} />
+            <EditOrAddCard type="edit" />
           </Route>
           <Route path="/decks/:deckId/cards/new">
-            <AddCard decks={decks} />
+            <EditOrAddCard type="add" />
           </Route>
           <Route path="/decks/:deckId/edit">
-            <EditDeck decks={decks}/>
+            <EditDeck />
           </Route>
           <Route path="/decks/:deckId/study">
             <StudyDeck decks={decks}/>

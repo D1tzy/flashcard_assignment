@@ -1,22 +1,19 @@
 import React from "react"
 import {Link} from "react-router-dom"
+import { deleteDeck } from "../../utils/api";
 
 
 
-export default function RenderDeck({deck, decks, setDecks}) {
+export default function RenderDeck({deck}) {
+    // our delete handler function deletes the deck if the user confirms the pop up
     function deleteHandler(event) {
         event.preventDefault();
-        if (window.confirm("Delete this deck? You will not be able to recover it.")) {
-            const filtered = decks[0].filter((deck) => {
-                console.log(typeof deck.id)
-                console.log(typeof event.target.value)
-                return deck.id.toString() !== event.target.value
-            })
-            console.log(filtered)
-            setDecks(filtered)
+        if (window.confirm(`Delete this deck? You will not be able to recover it.`)) {
+                deleteDeck(event.target.value)
+            }
         }
-    }
-
+    
+    // JSX for each deck
     return (
         <div key={deck.id} className="border mt-2">
             <div className="w-100 d-inline-flex">
